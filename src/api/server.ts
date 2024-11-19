@@ -126,6 +126,9 @@ export async function getChallenge(challengeId: number) {
 
 export async function upsertUserChallenge(challengeId: number, score: number) {
   const userId = await getUserId();
+  const challenge = await getChallenge(challengeId);
+  const currentScore = challenge?.[0].score ?? 0;
+    if (score <= currentScore) return;
   await db
     .insert(UserChallenges)
     .values({ userId: userId, challengeId, score })
