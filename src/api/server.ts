@@ -1,10 +1,10 @@
 "use server";
-import { redirect } from "@solidjs/router";
-import { useSession } from "vinxi/http";
-import { and, eq } from "drizzle-orm";
-import { db } from "./db";
-import { Argon2id } from "oslo/password";
-import { Challenges, UserChallenges, Users } from "../../drizzle/schema";
+import {redirect} from "@solidjs/router";
+import {useSession} from "vinxi/http";
+import {and, desc, eq} from "drizzle-orm";
+import {db} from "./db";
+import {Argon2id} from "oslo/password";
+import {Challenges, UserChallenges, Users} from "../../drizzle/schema";
 
 const argon2id = new Argon2id();
 
@@ -138,4 +138,18 @@ export async function upsertUserChallenge(challengeId: number, score: number) {
       target: [UserChallenges.userId, UserChallenges.challengeId],
       set: { score },
     });
+}
+
+export async function getLeaderboard(challengeId: number) {
+  return db
+    .select({
+      username: Users.username,
+      score: UserChallenges.score,
+    })
+    .from(Users)
+    .innerJoin(UserChallenges, eq(Users.id, UserChallenges.userId))
+    .where(eq(UserChallenges.challengeId, challengeId))
+    .orderBy(desc(UserChallenges.score))
+    .limit(10)
+    .all();
 }
