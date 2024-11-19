@@ -128,6 +128,7 @@ const ReactionSpeedChallenge = () => {
           ) : (
             <div class="result">
               <h2>Time is up! Your Score: {score()}</h2>
+              <h2>Your last highscore is: {challenge()?.[0].score} </h2>
               <A href="/">
                 <button>Return home</button>
               </A>
