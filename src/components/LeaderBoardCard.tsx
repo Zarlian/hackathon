@@ -13,23 +13,23 @@ const LeaderBoardCard = (props: ParamIdProps) => {
     onMount(async () => {
         try {
             const data = await getLeaderboard(props.paramId);
-            setLeaderBoard(data); // Set the fetched leaderboard
+            setLeaderBoard(data);
         } catch (error) {
             console.error("Error fetching leaderboard:", error);
         } finally {
-            setLoading(false); // Hide the loader
+            setLoading(false);
         }
     });
 
     return (
-        <div>
-            <h1>Leaderboard</h1>
+        <div class="container">
+            <h1 class="title">Leaderboard</h1>
             {loading() ? (
                 <div>Loading...</div>
             ) : (
-                <ul>
+                <ul class="list">
                     {leaderBoard().map((user) => (
-                        <li>
+                        <li class="line">
                             {user.username} : {user.score}
                         </li>
                     ))}
