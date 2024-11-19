@@ -35,7 +35,7 @@ export default function ChallengeDetail() {
                 <A href={`/`}>
                   <button class="button">Back</button>
                 </A>{" "}
-                <A href={`/reaction-speed-challenge`}>
+                <A href={`/challenge/${paramId}`}>
                   <button class="button">Start Challenge</button>
                 </A>
               </div>
