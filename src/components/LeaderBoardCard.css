@@ -1,0 +1,81 @@
+.container {
+    padding: 30px;
+    background-color: #f7f7f7;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    max-width: 650px;
+    margin: 2.5rem auto;
+    text-align: center;
+    user-select: none;
+    transition: all 0.3s ease;
+}
+
+.container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+}
+
+.title {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 30px;
+    font-family: 'Arial', sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #ff8c00;
+    transition: color 0.3s ease;
+}
+
+.title:hover {
+    color: #2a9d8f;
+}
+
+.list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.line {
+    color: #333;
+    padding: 12px 20px;
+    margin: 12px 0;
+    background-color: #fff;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Arial', sans-serif;
+    font-size: 1.2em;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+.line:hover {
+    background-color: #f1f1f1;
+    transform: translateX(5px);
+}
+
+.line span.username {
+    font-weight: bold;
+    color: #2a9d8f;
+    font-size: 1.3em;
+    transition: color 0.3s ease;
+}
+
+.line span.username:hover {
+    color: #ff8c00;
+}
+
+.line span.score {
+    font-weight: bold;
+    color: #e76f51;
+    font-size: 1.3em;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.line:not(:last-child) {
+    border-bottom: 1px solid #ddd;
+}

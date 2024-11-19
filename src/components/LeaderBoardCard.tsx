@@ -1,5 +1,6 @@
 import { createSignal, onMount } from "solid-js";
 import { getLeaderboard } from "~/api/server";
+import "./LeaderBoardCard.css";
 
 type ParamIdProps = {
     paramId: number;
