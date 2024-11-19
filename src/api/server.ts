@@ -4,7 +4,7 @@ import {useSession} from "vinxi/http";
 import {and, desc, eq} from "drizzle-orm";
 import {db} from "./db";
 import {Argon2id} from "oslo/password";
-import {Challenges, UserChallenges, Users} from "@/schema";
+import {Challenges, UserChallenges, Users} from "../../drizzle/schema";
 
 const argon2id = new Argon2id();
 
@@ -130,15 +130,14 @@ export async function upsertUserChallenge(challengeId: number, score: number) {
   const userId = await getUserId();
   const challenge = await getChallenge(challengeId);
   const currentScore = challenge?.score ?? 0;
-  if (score === null || score > currentScore) {
-    await db
-        .insert(UserChallenges)
-        .values({ userId: userId, challengeId, score })
-        .onConflictDoUpdate({
-          target: [UserChallenges.userId, UserChallenges.challengeId],
-          set: { score },
-        });
-  }
+    if (score <= currentScore) return;
+  await db
+    .insert(UserChallenges)
+    .values({ userId: userId, challengeId, score })
+    .onConflictDoUpdate({
+      target: [UserChallenges.userId, UserChallenges.challengeId],
+      set: { score },
+    });
 }
 
 export async function getLeaderboard(challengeId: number) {
