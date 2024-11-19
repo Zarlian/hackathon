@@ -10,7 +10,7 @@ const ChallengeCard = ({ challenge }: ChallengeCardProps) => {
   return (
     <div class="challengeCard">
       <h3>{challenge.name}</h3>
-      <p>{challenge.description}</p>
+      
     </div>
   );
 };

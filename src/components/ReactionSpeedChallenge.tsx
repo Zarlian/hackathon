@@ -41,6 +41,7 @@ const ReactionSpeedChallenge = () => {
   const [timeLeft, setTimeLeft] = createSignal(30);
   const [gameOver, setGameOver] = createSignal(false);
   const [isStarted, setIsStarted] = createSignal(false);
+  const [countdown, setCountdown] = createSignal(5);
 
   const generateAsteroid = () => {
     if (!gameOver()) {
@@ -53,6 +54,26 @@ const ReactionSpeedChallenge = () => {
   };
 
   createEffect(() => {
+    if (!isStarted()) {
+      const countdownInterval = setInterval(() => {
+        setCountdown((prev) => {
+          if (prev <= 1) {
+            clearInterval(countdownInterval);
+            setIsStarted(true);
+            return 0;
+          }
+          return prev - 1;
+        });
+      }, 1000);
+
+      onCleanup(() => {
+        clearInterval(countdownInterval);
+      });
+    }
+  });
+
+  createEffect(() => {
+    // Game timer
     if (isStarted() && !gameOver()) {
       const timerInterval = setInterval(() => {
         setTimeLeft((prev) => {
@@ -115,14 +136,8 @@ const ReactionSpeedChallenge = () => {
         </div>
       ) : (
         <div class="intro-container">
-          <NavBar />
-          <Container>
-            <h1>{challenge()?.[0].challengeName}</h1>
-            <p>{challenge()?.[0].challengeDescription}</p>
-            <button type="button" onClick={() => setIsStarted(true)}>
-              Start
-            </button>
-          </Container>
+          <h1>Get Ready!</h1>
+          <h2>Starting in: {countdown()}</h2>
         </div>
       )}
     </div>

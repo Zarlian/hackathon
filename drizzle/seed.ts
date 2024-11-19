@@ -24,6 +24,19 @@ async function seedDatabase() {
     .execute();
 
   await db
+    .insert(Challenges)
+    .values([
+      {
+        id: 2,
+        name: "Guessing Challenge",
+        description:
+        //guess a random number between 1 and 100
+         "Guess a random number between 1 and 100. You have 10 chances to guess the correct number. Good luck!",
+      },
+    ])
+    .execute();
+
+  await db
     .insert(UserChallenges)
     .values([{ userId: 1, challengeId: 1, score: 95 }])
     .execute();

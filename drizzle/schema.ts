@@ -18,6 +18,7 @@ export const Challenges = sqliteTable("challenges", {
   description: text("description").notNull().default(""),
 });
 
+
 export const UserChallenges = sqliteTable(
   "user_challenges",
   {

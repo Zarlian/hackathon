@@ -104,7 +104,7 @@ export async function getChallenges() {
 
 export async function getChallenge(challengeId: number) {
   const user = await getUser();
-  return db
+  const result = await db
     .select({
       challengeId: Challenges.id,
       challengeName: Challenges.name,
@@ -122,6 +122,8 @@ export async function getChallenge(challengeId: number) {
     )
     .where(eq(Challenges.id, challengeId))
     .limit(1);
+
+  return result[0];
 }
 
 export async function upsertUserChallenge(challengeId: number, score: number) {
