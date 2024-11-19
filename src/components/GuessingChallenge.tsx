@@ -1,6 +1,6 @@
 import { createSignal, createEffect, onCleanup } from "solid-js";
 
-const GuessTheNumber = () => {
+const GuessingChallenge = () => {
   const [randomNumber, setRandomNumber] = createSignal(Math.floor(Math.random() * 100) + 1);
   const [userGuess, setUserGuess] = createSignal("");
   const [feedback, setFeedback] = createSignal("");
@@ -105,4 +105,4 @@ const GuessTheNumber = () => {
   );
 };
 
-export default GuessTheNumber;
+export default GuessingChallenge;

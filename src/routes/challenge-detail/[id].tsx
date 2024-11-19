@@ -9,8 +9,6 @@ import LeaderBoardCard from "~/components/LeaderBoardCard";
 
 export default function ChallengeDetail() {
   const params = useParams();
-
-  console.log('param' , params);
   const [challengeDetail] = createResource(() => getChallenge(Number(params.id)));
   console.log('param' , params.id);
   const paramId = parseInt(params.id);
@@ -29,7 +27,7 @@ export default function ChallengeDetail() {
             <button>back</button>
             </A>
 
-            <A href={`/reaction-speed-challenge`}>
+            <A href={`/challenge/${params.id}`}>
             <button>Start Challenge</button>
             </A>
             </div>
