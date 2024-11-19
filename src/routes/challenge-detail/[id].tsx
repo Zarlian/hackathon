@@ -5,6 +5,7 @@ import ChallengeDetailCard from "~/components/ChallengeDetailCard";
 import { getChallenge } from "~/api/server";
 import NavBar from "~/components/NavBar";
 import Container from "~/components/Container";
+import LeaderBoardCard from "~/components/LeaderBoardCard";
 
 export default function ChallengeDetail() {
   const params = useParams();
@@ -12,13 +13,15 @@ export default function ChallengeDetail() {
   console.log('param' , params);
   const [challengeDetail] = createResource(() => getChallenge(Number(params.id)));
   console.log('param' , params.id);
+  const paramId = parseInt(params.id);
   return (
     <Show when={challengeDetail()} fallback={"Loading Challenge Details..."}>
       {challengeDetail() ? (
         <>
         <NavBar />
         <Container>
-          <ChallengeDetailCard challengeDetail={challengeDetail()!} />
+          <ChallengeDetailCard challengeDetail={challengeDetail()!}  />
+          <LeaderBoardCard paramId= {paramId}/>
 
           <div id='button-container'>
 
